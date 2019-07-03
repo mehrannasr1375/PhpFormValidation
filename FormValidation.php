@@ -1,9 +1,13 @@
 <!DOCTYPE HTML>  
 <html>
 <head>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="styles/rtl.css">-->
     <style>
         .error {
             color: #FF0000;
+            padding: 8px;
         }
     </style>
 </head>
@@ -15,7 +19,8 @@
 
 
     // define variables and set to empty values
-    $nameErr = $emailErr = $genderErr = $websiteErr = $name = $email = $gender = $comment = $website = "";
+    $nameErr = $emailErr = $genderErr = $websiteErr 
+        = $name = $email = $gender = $comment = $website = "";
 
 
 
@@ -86,70 +91,102 @@
 
 
 
-    <h2>PHP Form Validation Example</h2>
-
-    <p><span class="error">* required field</span></p>
-
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-        
-        Name: 
-        <input type="text" name="name" value="<?php echo $name;?>">
-        <span class="error">*
-             <?php echo $nameErr;?>
-        </span>
-
-        <br>
-        <br>
-
-        E-mail:
-        <input type="text" name="email" value="<?php echo $email;?>">
-        <span class="error">* 
-            <?php echo $emailErr;?>
-        </span>
-
-        <br>
-        <br>
-
-        Website:
-        <input type="text" name="website" value="<?php echo $website;?>">
-        <span class="error">
-            <?php echo $websiteErr;?>
-        </span>
-
-        <br>
-        <br>
-
-        Comment: 
-        <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
-        
-        <br>
-        <br>
-
-        Gender:
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
-        <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
-        <span class="error">* 
-            <?php echo $genderErr;?>
-        </span>
-        
-        <br>
-        <br>
-
-        <input type="submit" name="submit" value="Submit"> 
-
-    </form>
+    <div class="container py-5">
+    <h2 class="mb-4">PHP Form Validation Example</h2>
 
 
-    <h2>
-        <?php
-            echo $name."<br>";
-            echo $email."<br>";
-            echo $website."<br>";
-            echo $comment."<br>";
-            echo $gender;
-        ?>
-    </h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+            
+            
+            
+            <!-- name -->    
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" name="name" id="name" value="<?=$name;?>">
+                <span class="error"> * 
+                    <?=$nameErr;?>
+                </span>
+            </div>
 
+
+            <!-- email -->  
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" class="form-control" name="email" id="email" value="<?=$email;?>">
+                <span class="error"> * 
+                    <?=$emailErr;?>
+                </span>
+            </div>
+
+
+            <!-- website -->  
+            <div class="form-group">
+                <label for="email">Website:</label>
+                <input type="text" class="form-control" name="website" id="website" value="<?=$website;?>">
+                <span class="error">
+                    <?=$websiteErr;?>
+                </span>
+            </div>
+
+            
+            <!-- comment --> 
+            <div class="form-group">
+                <label for="email">comment:</label>
+                <textarea name="comment" class="form-control" id="comment" rows="5" cols="40">
+                    <?=$comment;?>
+                </textarea>
+            </div> 
+
+
+            
+            <!-- comment --> 
+            <div class="form-group">
+                <label for="email">gender:</label>
+
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="male" name="gender" value="male" <?php if (isset($gender) && $gender=="male") echo "checked";?> >
+                    <label class="custom-control-label" for="male">male</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="female" name="gender" value="female" <?php if (isset($gender) && $gender=="female") echo "checked";?> >
+                    <label class="custom-control-label" for="female">female</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="other" name="gender" value="other" <?php if (isset($gender) && $gender=="other") echo "checked";?> >
+                    <label class="custom-control-label" for="other">other</label>
+                </div>
+
+ 
+                <span class="error">* 
+                    <?=$genderErr;?>
+                </span>
+            </div> 
+            
+
+
+
+            <input type="submit" class="btn btn-success" name="submit" value="Submit"> 
+
+        </form>
+
+
+        <h2>
+            <?php
+                echo $name . "<br>";
+                echo $email . "<br>";
+                echo $website . "<br>";
+                echo $comment . "<br>";
+                echo $gender;
+            ?>
+        </h2>
+    </div>
+
+
+
+
+    <!-- scripts -->
+    <script src="scripts/jquery-3.3.1.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
 </body>
 </html>
