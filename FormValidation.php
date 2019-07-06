@@ -82,6 +82,10 @@
                 $is_empty = false;
         if ($is_empty)
             saveToDb( $name, $email, $gender, $comment, $job );
+        else
+            echo "<p class='bg-danger text-light p-2'>Data is Wrong!</p>";
+
+
     }
 
 
