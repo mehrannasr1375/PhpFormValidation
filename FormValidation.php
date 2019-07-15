@@ -1,18 +1,12 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE HTML>  
 <html>
 <head>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/font-awesome.min.css">
-    <!--<link rel="stylesheet" href="styles/rtl.css">-->
-    <style>
-        .error {
-            display: block;
-            color: #d37a7a;
-            padding: 8px 12px;
-            font-weight: 700;
-            line-height: .8;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/css.css">
 </head>
 <body>  
 
@@ -20,16 +14,16 @@
 
 <?php
 
-
     // define variables and set to empty values
-    $name = $email = $gender = $comment = $job = "";
+    $name = $email = $gender = $comment = $job = $captcha = "";
 
     $errors = [
             "name" => "",
             "email" => "",
             "gender" => "",
             "job" => "",
-            "comment" => ""
+            "comment" => "",
+            "captcha" => ""
     ];
 
 
@@ -71,8 +65,15 @@
         else
             $gender = test_input($_POST["gender"]);
 
+        /*captcha*/
+        if ($_POST["captcha_code"] == $_SESSION["captcha_code"])
+            $captcha = test_input($_POST["captcha_code"]);
+        else
+            $errors['captcha'] = "Captcha is invalid";
+
+
         /* Show Last Data */
-        echo "<p class='p-3 bg-info''>name: " . $name . "<br>email: " . $email . "<br> job: " . $job . "<br> comment: " . $comment . "<br> gender: " . $gender . "</p>";
+        echo "<p class='p-3 bg-info''>name: " . $name . "<br>email: " . $email . "<br> job: " . $job . "<br> comment: " . $comment . "<br> gender: " . $gender . "<br> captcha: " . $captcha . "</p>";
 
 
         /* Insert to DB if there is no errors */
@@ -111,7 +112,6 @@
                 "</div>";
     }
 
-
 ?>
 
 
@@ -120,7 +120,6 @@
         <h3 class="mb-4">Php Form Validation Example:</h3>
         <form method="post">
             <div class="row">
-
                 <!-- name -->
                 <div class="form-group col-12 col-lg-6">
                     <label for="name">Name:</label>
@@ -177,10 +176,21 @@
                 </div>
             </div>
 
+            <!-- captcha -->
+            <div class="form-group">
+                <label for="captcha">Enter the Captcha:</label>
+                <div class="d-flex">
+                    <div>
+                        <img src="captcha_code.php" id='captcha-img' alt='captcha' />
+                    </div>
+                    <input type="text" name="captcha_code" id="captcha" class="form-control">
+                </div>
+                <?php showErrorIfExists('captcha'); ?>
+            </div>
+
             <input type="submit" class="btn btn-success" name="submit" value="Submit">
         </form>
     </div>
-
 
 
     <!-- scripts -->
