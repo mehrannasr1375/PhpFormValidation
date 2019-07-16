@@ -6,7 +6,7 @@
 }
 
 #captcha{
-    border-radius: 0 .25rem .25rem 0 !important;
+    border-radius: 0 0 0 0 !important;
 }
 .error {
     display: block;
@@ -14,4 +14,19 @@
     padding: 8px 12px;
     font-weight: 700;
     line-height: .8;
+}
+#refresh-captcha{
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:6px;
+    padding-bottom:5px;
+    font-weight: 800;
+    line-height: 1.8;
+    cursor: pointer;
+    border-radius: 0 .25rem .25rem 0 !important;
+    margin-left: -2px;
+}
+#refresh-captcha:active{
+    color:black;
+    cursor: pointer;
 }

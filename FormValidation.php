@@ -184,6 +184,9 @@
                         <img src="captcha_code.php" id='captcha-img' alt='captcha' />
                     </div>
                     <input type="text" name="captcha_code" id="captcha" class="form-control">
+                    <div class="">
+                        <button type="button" class="btn btn-outline-danger btn-sm" id="refresh-captcha">refresh</span>
+                    </div>
                 </div>
                 <?php showErrorIfExists('captcha'); ?>
             </div>
@@ -197,5 +200,6 @@
     <script src="scripts/jquery-3.3.1.js"></script>
     <script src="scripts/popper.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
